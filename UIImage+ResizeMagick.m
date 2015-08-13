@@ -38,7 +38,7 @@
         return [newImage croppedImageWithRect: CGRectMake ((newImage.size.width - width) / 2, (newImage.size.height - height) / 2, width, height)];
     }
     
-    if([spec hasSuffix:@"##"]) {
+    if([spec hasSuffix:@"*"]) {
         NSString *specWithoutSuffix = [spec substringToIndex: [spec length] - 1];
         NSArray *widthAndHeight = [specWithoutSuffix componentsSeparatedByString: @"x"];
         NSUInteger width = labs([[widthAndHeight objectAtIndex: 0] integerValue]);
