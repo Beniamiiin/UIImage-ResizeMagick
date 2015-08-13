@@ -37,6 +37,15 @@
         UIImage *newImage = [self resizedImageWithMinimumSize: CGSizeMake (width, height)];
         return [newImage croppedImageWithRect: CGRectMake ((newImage.size.width - width) / 2, (newImage.size.height - height) / 2, width, height)];
     }
+    
+    if([spec hasSuffix:@"##"]) {
+        NSString *specWithoutSuffix = [spec substringToIndex: [spec length] - 1];
+        NSArray *widthAndHeight = [specWithoutSuffix componentsSeparatedByString: @"x"];
+        NSUInteger width = labs([[widthAndHeight objectAtIndex: 0] integerValue]);
+        NSUInteger height = labs([[widthAndHeight objectAtIndex: 1] integerValue]);
+        UIImage *newImage = [self resizedImageWithMinimumSize: CGSizeMake (width, height)];
+        return [newImage croppedImageWithRect: CGRectMake (0.0, 0.0, width, height)];
+    }
 
     if([spec hasSuffix:@"^"]) {
         NSString *specWithoutSuffix = [spec substringToIndex: [spec length] - 1];
